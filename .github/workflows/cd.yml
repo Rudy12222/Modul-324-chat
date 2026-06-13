@@ -1,0 +1,42 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Docker Hub Login
+        shell: powershell
+        run: |
+          $token = "${{ secrets.DOCKERHUB_TOKEN }}"
+          $token | docker login --username "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+      - name: Docker Image bauen und pushen
+        shell: powershell
+        run: |
+          $imageSha = "${{ secrets.DOCKERHUB_USERNAME }}/m324-chat:${{ github.sha }}"
+          $imageLatest = "${{ secrets.DOCKERHUB_USERNAME }}/m324-chat:latest"
+          docker build -t $imageSha -t $imageLatest .
+          docker push $imageSha
+          docker push $imageLatest
+
+      - name: kubeconfig schreiben
+        shell: powershell
+        run: |
+          New-Item -ItemType Directory -Force "$env:USERPROFILE\.kube" | Out-Null
+          Set-Content -Path "$env:USERPROFILE\.kube\config" -Value "${{ secrets.KUBECONFIG }}"
+
+      - name: Deployment aktualisieren
+        shell: powershell
+        run: |
+          kubectl apply -f k8s
+          kubectl set image deployment/m324-chat m324-chat=${{ secrets.DOCKERHUB_USERNAME }}/m324-chat:${{ github.sha }}
+          kubectl rollout status deployment/m324-chat

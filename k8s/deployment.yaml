@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: m324-chat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: m324-chat
+  template:
+    metadata:
+      labels:
+        app: m324-chat
+    spec:
+      containers:
+        - name: m324-chat
+          image: example/m324-chat:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PORT
+              value: "3000"
+          readinessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 20

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: m324-chat
+spec:
+  selector:
+    app: m324-chat
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000
+  type: ClusterIP

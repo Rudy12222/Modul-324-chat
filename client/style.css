@@ -1,0 +1,26 @@
+body {
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    background: #111827;
+}
+
+.bg-slate-850 {
+    background: #1b2431;
+}
+
+#messages::-webkit-scrollbar {
+    width: 10px;
+}
+
+#messages::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#messages::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 9999px;
+}
+
+#messages {
+    scrollbar-width: thin;
+    scrollbar-color: #334155 transparent;
+}

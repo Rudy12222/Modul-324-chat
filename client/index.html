@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LB1 Chat - M324</title>
+  <link rel="stylesheet" href="/style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/utils.js" defer></script>
+  <script src="/script.js" defer></script>
+</head>
+
+<body class="min-h-screen bg-slate-900 text-slate-100">
+  <div class="mx-auto flex min-h-screen w-full max-w-5xl items-center p-4">
+    <div class="grid h-[92vh] w-full overflow-hidden rounded-xl border border-slate-700 bg-slate-800 md:grid-cols-[260px_1fr]">
+      <aside class="border-b border-slate-700 bg-slate-850 p-4 md:border-b-0 md:border-r">
+        <div class="flex items-center justify-between border-b border-slate-700 pb-4">
+          <h1 class="text-xl font-semibold text-white">Chat</h1>
+          <span class="rounded bg-slate-700 px-2 py-1 text-sm text-slate-200" id="userCount">0 online</span>
+        </div>
+
+        <div class="mt-4">
+          <label for="nameInput" class="mb-2 block text-sm text-slate-300">Name</label>
+          <div class="flex gap-2">
+            <input
+              id="nameInput"
+              type="text"
+              placeholder="Dein Name"
+              class="w-full rounded border border-slate-600 bg-slate-900 px-3 py-2 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-400"
+            />
+            <button
+              id="saveNameButton"
+              class="rounded border border-slate-500 bg-slate-700 px-3 py-2 text-sm text-white hover:bg-slate-600"
+            >
+              Speichern
+            </button>
+          </div>
+        </div>
+
+        <div class="mt-6">
+          <p class="mb-2 text-sm text-slate-300">Benutzer</p>
+          <div class="flex flex-wrap gap-2" id="userList"></div>
+        </div>
+
+        <div class="mt-6">
+          <p class="mb-2 text-sm text-slate-300">Status</p>
+          <p class="rounded border border-slate-700 bg-slate-900 px-3 py-3 text-sm text-slate-200" id="typingStatus">
+            Niemand schreibt gerade.
+          </p>
+        </div>
+      </aside>
+
+      <section class="flex min-h-0 flex-col">
+        <div class="border-b border-slate-700 px-4 py-3">
+          <p class="text-sm text-slate-300">Chat</p>
+        </div>
+
+        <div class="flex flex-1 flex-col gap-3 overflow-y-auto bg-slate-900 p-4" id="messages"></div>
+
+        <div class="border-t border-slate-700 bg-slate-800 p-4">
+          <div class="flex items-center gap-3">
+            <input
+              id="messageInput"
+              type="text"
+              placeholder="Nachricht schreiben"
+              class="w-full rounded border border-slate-600 bg-slate-900 px-3 py-3 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-400"
+            />
+            <button
+              class="rounded border border-slate-500 bg-slate-700 px-4 py-3 text-sm text-white hover:bg-slate-600"
+              id="sendButton"
+            >
+              Senden
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+
+</html>
