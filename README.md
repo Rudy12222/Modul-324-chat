@@ -26,3 +26,12 @@ npm run build
 ## Abgabe
 
 Die App ist vorbereitet für GitHub Actions, Docker, Kubernetes und Uptime Kuma.
+
+## Screenshots
+
+Im Ordner `screenshots` sind Nachweise für die Abgabe abgelegt:
+
+- `Actions server.png`: self-hosted GitHub Actions Runner
+- `Healthcheck.png`: erfolgreicher `/healthcheck` Aufruf
+- `CICD Pipeline.png`: Prozessübersicht der CI/CD Pipeline
+- `Branching Strategie.png`: Prozessübersicht der Branching Strategie
